@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useRef } from "react"
+import { getDatabase, onChildAdded, ref } from "firebase/database"
+import L from "leaflet"
+import "leaflet/dist/leaflet.css"
+import React, { useEffect, useRef, useState } from "react"
+import { FeatureLayer } from "react-esri-leaflet"
 import {
+	LayerGroup,
 	LayersControl,
 	MapContainer,
-	TileLayer,
 	Marker,
-	LayerGroup,
-	Popup
+	Popup,
+	TileLayer
 } from "react-leaflet"
-import { getDatabase, ref, onChildAdded } from "firebase/database"
 import LastUpdated from "./LastUpdated"
-import { FeatureLayer } from "react-esri-leaflet"
-import L from "leaflet"
 import "./map.css"
-import "leaflet/dist/leaflet.css"
 
 const Map = () => {
 	// State to hold the users data forms
@@ -253,6 +253,12 @@ const Map = () => {
 					<TileLayer
 						attribution="Map tiles by <a href='http://stamen.com'>Stamen Design</a>, under <a href='http://creativecommons.org/licenses/by/3.0'>CC BY 3.0</a>. Data by <a href='http://openstreetmap.org'>OpenStreetMap</a>, under <a href='http://www.openstreetmap.org/copyright'>ODbL</a>."
 						url="https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg"
+					/>
+				</LayersControl.BaseLayer>
+				<LayersControl.BaseLayer name="Toner">
+					<TileLayer
+						attribution="Map tiles by <a href='http://stamen.com'>Stamen Design</a>, under <a href='http://creativecommons.org/licenses/by/3.0'>CC BY 3.0</a>. Data by <a href='http://openstreetmap.org'>OpenStreetMap</a>, under <a href='http://www.openstreetmap.org/copyright'>ODbL</a>."
+						url="https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png"
 					/>
 				</LayersControl.BaseLayer>
 				{/* Layercontroll option for the user data */}
